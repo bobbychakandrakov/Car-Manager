@@ -10,7 +10,7 @@
                 <p><strong>Fuel Type:</strong> {{ car.fuelType }}</p>
                 <p><strong>Transmission:</strong> {{ car.transmission }}</p>
                 <div class="text-right">
-                    <button class="btn btn-success">Update</button>
+                    <a routerLink="/car/{{car.id}}" class="btn btn-success">Update</a>
                     <button class="btn btn-danger" (click)="open(content, car.id)">Delete</button>
                 </div>
         </div>

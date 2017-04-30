@@ -13,11 +13,13 @@ import { CarFormComponent } from './car-form/car-form.component';
 import { CarItemComponent } from './car-item/car-item.component';
 
 import { CarDataService } from './car-data.service';
+import { CarEditComponent } from './car-edit/car-edit.component';
 
 
 const appRoutes: Routes = [
   { path: '', component: CarListComponent },
-  { path: 'create', component: CarFormComponent }
+  { path: 'create', component: CarFormComponent },
+  { path: 'car/:id', component: CarEditComponent}
   ];
 
 @NgModule({
@@ -25,7 +27,8 @@ const appRoutes: Routes = [
     AppComponent,
     CarListComponent,
     CarFormComponent,
-    CarItemComponent
+    CarItemComponent,
+    CarEditComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
