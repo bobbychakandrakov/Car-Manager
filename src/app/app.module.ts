@@ -15,6 +15,7 @@ import { CarItemComponent } from './car-item/car-item.component';
 import { CarDataService } from './car-data.service';
 import { CarEditComponent } from './car-edit/car-edit.component';
 import { LimitToPipe } from './limit-to.pipe';
+import { SkipItemsPipe } from './skip-items.pipe';
 
 
 const appRoutes: Routes = [
@@ -30,7 +31,8 @@ const appRoutes: Routes = [
     CarFormComponent,
     CarItemComponent,
     CarEditComponent,
-    LimitToPipe
+    LimitToPipe,
+    SkipItemsPipe
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

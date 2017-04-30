@@ -1,7 +1,7 @@
 <h1 class="text-center">Car Manager</h1>
 <a routerLink="/create" class="btn btn-primary btn-block">Add car</a>
 <div class="row">
-    <div class="col-sm-6" *ngFor="let car of cars | limitTo:1">
+    <div class="col-sm-6" *ngFor="let car of cars |  skipItems:(page-1)*10 | limitTo:page*10 ">
         <div class="alert alert-info">
                 <p><strong>Model:</strong> {{ car.model }}</p>
                 <p><strong>Brand:</strong> {{ car.brand }}</p>
@@ -16,7 +16,11 @@
         </div>
     </div>
 </div>
-<ngb-pagination [collectionSize]="cars.length" [(page)]="page" [maxSize]="5"></ngb-pagination>
+<div [hidden]="!hide">
+  <ngb-pagination [collectionSize]="cars.length" [(page)]="page"  [pageSize]="10"></ngb-pagination>
+</div>
+
+
 
 <ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">

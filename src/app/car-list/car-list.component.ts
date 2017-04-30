@@ -13,16 +13,21 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 export class CarListComponent implements OnInit {
   closeResult: string;
   cars: Car[];
-  page:number = 0;
+  page: number = 1;
+  hide: boolean = false;
 
   constructor(private carService: CarDataService, private modalService: NgbModal) { 
-    this.cars = carService.getAll() || [];
+    
   }
 
   open(content, id) {
     this.modalService.open(content).result.then((result) => {
       if (result == 'Confirm click'){
         this.carService.removeCar(id);
+        this.cars = this.carService.getAll();
+        if(this.cars.length == 0){
+          this.hide = false;
+        }
       }
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -41,7 +46,10 @@ export class CarListComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.carService.getAll());
+    this.cars = this.carService.getAll() || [];
+    if(this.cars.length > 0){
+      this.hide = true;
+    }
   }
 
 }
