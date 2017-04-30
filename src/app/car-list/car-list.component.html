@@ -1,0 +1,39 @@
+<h1 class="text-center">Car Manager</h1>
+<a routerLink="/create" class="btn btn-primary btn-block">Add car</a>
+<div class="row">
+    <div class="col-sm-6" *ngFor="let car of cars |  skipItems:(page-1)*10 | limitTo:page*10 ">
+        <div class="alert alert-info">
+                <p><strong>Model:</strong> {{ car.model }}</p>
+                <p><strong>Brand:</strong> {{ car.brand }}</p>
+                <p *ngIf="car.description"><strong>Description:</strong> {{ car.description }}</p>
+                <p><strong>Registration number:</strong> {{ car.number }}</p>
+                <p><strong>Fuel Type:</strong> {{ car.fuelType }}</p>
+                <p><strong>Transmission:</strong> {{ car.transmission }}</p>
+                <div class="text-right">
+                    <a routerLink="/car/{{car.id}}" class="btn btn-success">Update</a>
+                    <button class="btn btn-danger" (click)="open(content, car.id)">Delete</button>
+                </div>
+        </div>
+    </div>
+</div>
+<div [hidden]="!hide">
+  <ngb-pagination [collectionSize]="cars.length" [(page)]="page"  [pageSize]="10"></ngb-pagination>
+</div>
+
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Delete Car</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Are you sure you want to delete this car?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="c('Confirm click')">Yes</button>
+    <button type="button" class="btn btn-danger" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>
