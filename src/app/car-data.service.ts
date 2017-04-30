@@ -16,7 +16,7 @@ export class CarDataService {
     this.localStorageService.set('cars', JSON.stringify(this.cars));
   }
 
-  getAllCars(): Car[]{
+  getAll(): Car[]{
     return this.cars || [];
   }
 

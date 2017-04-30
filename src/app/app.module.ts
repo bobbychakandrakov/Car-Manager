@@ -10,6 +10,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { CarListComponent } from './car-list/car-list.component';
 import { CarFormComponent } from './car-form/car-form.component';
+import { CarItemComponent } from './car-item/car-item.component';
+
+import { CarDataService } from './car-data.service';
 
 
 const appRoutes: Routes = [
@@ -21,7 +24,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     CarListComponent,
-    CarFormComponent
+    CarFormComponent,
+    CarItemComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -34,7 +38,7 @@ const appRoutes: Routes = [
     HttpModule,
     NgbModule.forRoot()
   ],
-  providers: [],
+  providers: [CarDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
