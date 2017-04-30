@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
-
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { LocalStorageModule } from 'angular-2-local-storage';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 import { AppComponent } from './app.component';
@@ -25,6 +25,10 @@ const appRoutes: Routes = [
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
+    LocalStorageModule.withConfig({
+        prefix: 'app-root',
+        storageType: 'localStorage'
+    }),
     BrowserModule,
     FormsModule,
     HttpModule,
