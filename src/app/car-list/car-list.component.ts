@@ -13,6 +13,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 export class CarListComponent implements OnInit {
   closeResult: string;
   cars: Car[];
+  page:number = 0;
 
   constructor(private carService: CarDataService, private modalService: NgbModal) { 
     this.cars = carService.getAll() || [];

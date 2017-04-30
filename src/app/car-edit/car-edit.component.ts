@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Car } from '../car';
 import { CarDataService } from '../car-data.service';
@@ -17,13 +17,23 @@ export class CarEditComponent implements OnInit {
   transmissions = ['Manual', 'Automatic', 'Semi-Automatic'];
 
   constructor(private carService: CarDataService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
        this.id = +params['id']; // (+) converts string 'id' to a number
        this.car = this.carService.getCar(this.id);
     });
+  }
+
+  submit(e,form){
+    e.preventDefault();
+
+    if (form.valid){
+      this.carService.updateCar(this.id,this.car);
+      this.router.navigateByUrl('/');
+    }
   }
 
 }
